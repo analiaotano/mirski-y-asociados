@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="keywords" content="abogadas, abogados, amparo salud CABA, abogado obra social, abogado prepaga Argentina, gerátrico, cuidador domiciliario 24hs., medicación, alto costo, cirugías, insumos, tratamiento de fertilización">
 <meta name="author" content="Mirski y Asociados Abogados">
 
-<title>Mirski y Asociados | Amparos de Salud en CABA</title>
+<title>Mirski y Asociados | Abogadas especialistas en Amparos de Salud</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 
 <style>
 
@@ -194,22 +195,92 @@ footer {
   padding:30px;
 }
 
-/* WHATSAPP */
-.whatsapp {
-  position:fixed;
-  bottom:20px;
-  right:20px;
+
+/* BOTÓN FLOTANTE */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  color: white;
+  border-radius: 50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  cursor:pointer;
+  z-index:2000;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
+  70% { box-shadow: 0 0 0 20px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* CHAT */
+#waChat {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index:3000;
+}
+
+#waHeader {
   background:#25D366;
   color:white;
-  padding:15px;
-  border-radius:50px;
-  text-decoration:none;
+  padding:12px;
+  font-weight:bold;
+}
+
+#waMessages {
+  height:250px;
+  padding:10px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+.msg-user { text-align:right; margin:5px 0; }
+.msg-bot { text-align:left; margin:5px 0; color:#1b5e20; }
+
+#waInputArea {
+  display:flex;
+  border-top:1px solid #eee;
+}
+
+#waInput {
+  flex:1;
+  border:none;
+  padding:10px;
+  outline:none;
+}
+
+#waSend {
+  background:#25D366;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  cursor:pointer;
 }
 
 </style>
 </head>
 
+
+
 <body>
+
 
 <nav>
 <ul>
@@ -219,17 +290,27 @@ footer {
 </ul>
 </nav>
 
+
+
 <header id="inicio">
+
 <h1>Mirski y Asociados</h1>
 <p>Abogadas especialistas en amparos de salud</p>
 
-<a class="btn"
-href="https://wa.me/5491162048688?text=Hola,%20quiero%20hacer%20una%20consulta%20sobre%20amparos%20de%20salud">
+
+
+<a class="btn" target="_blank"
+href="https://wa.me/5491162048688?text=Hola,%20quiero%20hacer%20una%20consulta%20sobre%20un%20amparo">
 Consultar por WhatsApp
 </a>
+
 </header>
 
+
+
+
 <section id="servicios" class="container">
+
 <h2>Áreas de práctica</h2>
 
 <div class="grid">
@@ -289,6 +370,9 @@ Consultar por WhatsApp
 </div>
 </section>
 
+
+
+
 <section class="container compacto">
 <h2>Amparo de salud</h2>
 <p>Es una acción judicial urgente para exigir cobertura médica cuando la prepaga o la obra social incumple Derechos y Obligaciones.</p>
@@ -300,6 +384,9 @@ Consultar por WhatsApp
 <p>La ley garantiza cobertura integral de tratamientos, terapias e insumos.</p>
 </section>
 
+
+
+
 <section id="contacto" class="container">
 <h2>Consulta rápida</h2>
 
@@ -307,6 +394,7 @@ Consultar por WhatsApp
 
 <input type="text" id="nombre" placeholder="Nombre completo" required>
 <input type="tel" id="telefono" placeholder="Teléfono (opcional)">
+
 <textarea id="mensaje" placeholder="Contanos tu caso...(obra social, prepaga, gerátrico, cuidador domiciliario 24hs., medicación, alto costo, cirugías, insumos, tratamiento de fertilización, etc.)" required></textarea>
 
 <button type="submit" class="btn">Enviar consulta</button>
@@ -314,28 +402,74 @@ Consultar por WhatsApp
 </form>
 </section>
 
+
+
+
+
 <footer>
 <p><strong>Mirski y Asociados</strong></p>
 <p>CABA | Atención presencial y virtual</p>
 </footer>
 
-<a class="whatsapp"
-href="https://wa.me/5491162048688">
-WhatsApp
-</a>
+
+
+<!-- BOTÓN FLOTANTE -->
+<div class="whatsapp-float" onclick="toggleChat()">💬</div>
+
+<!-- CHAT -->
+<div id="waChat">
+  <div id="waHeader">Mirski y Asociados</div>
+
+  <div id="waMessages">
+    <div class="msg-bot">¡Hola! ¿En qué podemos ayudarte?</div>
+  </div>
+
+  <div id="waInputArea">
+    <input id="waInput" type="text" placeholder="Escribí tu consulta...">
+    <button id="waSend" onclick="sendChat()">Enviar</button>
+  </div>
+</div>
 
 <script>
+
+function toggleChat(){
+  let chat = document.getElementById("waChat");
+  chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+}
+
+/* FORMULARIO -> WHATSAPP */
 function enviarWhatsApp(e){
 e.preventDefault();
 
 let nombre = document.getElementById("nombre").value;
 let mensaje = document.getElementById("mensaje").value;
 
-let url = "https://wa.me/5491162048688?text="
-+ encodeURIComponent("Hola, quiero hacer una consulta. Soy " + nombre + ". " + mensaje);
+let texto = "Hola, quiero hacer una consulta sobre un amparo. " +
+"Soy " + nombre + ". " + mensaje;
+
+let url = "https://wa.me/5491162048688?text=" + encodeURIComponent(texto);
 
 window.open(url, "_blank");
 }
+
+/* CHAT */
+function sendChat(){
+let input = document.getElementById("waInput");
+let msg = input.value.trim();
+if(msg === "") return;
+
+let box = document.getElementById("waMessages");
+
+box.innerHTML += `<div class="msg-user">${msg}</div>`;
+
+input.value = "";
+
+setTimeout(() => {
+box.innerHTML += `<div class="msg-bot">¡Hola! Recibimos tu consulta, te daremos una respuesta a la brevedad.</div>`;
+box.scrollTop = box.scrollHeight;
+}, 800);
+}
+
 </script>
 
 </body>
